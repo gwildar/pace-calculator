@@ -5,7 +5,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin'),
 module.exports = {
   entry: [
       'webpack/hot/only-dev-server',
-      './src/index'
+      './src/index.js'
     ],
   devtool: 'source-map',
   output: {
@@ -22,46 +22,55 @@ module.exports = {
       }
     ],
     loaders: [
-    { 
-      test: /\.js?$/, 
-      loaders: ['react-hot', 'babel'], 
-      include: __dirname + '/src',
-      exclude: /node_modules/
-    },
-    { 
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    },
-    {
-      test: /\.less$/,
-      loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
-    },
-    { 
-      test: /\.(woff|woff2)$/,  
-      loader: "url-loader?limit=10000&mimetype=application/font-woff" 
-    },
-    { test: /\.ttf$/,    
-      loader: "file-loader" 
-    },
-    { test: /\.eot$/,    
-      loader: "file-loader" 
-    },
-    { test: /\.svg$/,    
-      loader: "file-loader" 
-    }
+      { 
+        test: /\.js?$/, 
+        loaders: ['react-hot', 'babel'], 
+        include: __dirname + '/src',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        include: __dirname + '/src',
+        loaders: ['babel-loader']
+      },
+      {
+        test: /\.jsx$/,
+        include: __dirname + '/src',
+        loaders: ['babel-loader']
+      },
+      {
+        test: /\.less$/,
+        loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
+      },
+      { 
+        test: /\.(woff|woff2)$/,  
+        loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+      },
+      { 
+        test: /\.ttf$/,    
+        loader: "file-loader" 
+      },
+      { 
+        test: /\.eot$/,    
+        loader: "file-loader" 
+      },
+      { 
+        test: /\.svg$/,    
+        loader: "file-loader" 
+      }
     ],
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
     new HtmlWebpackPlugin({
-    title: 'Pace Calculator',
-    template: './src/index.ejs', // Load a custom template (ejs by default see the FAQ for details) 
+      title: 'Pace Calculator',
+      template: './src/index.ejs', 
     }),
     new Webpack.NoErrorsPlugin()
   ],
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js',  '.less']
+    extensions: ['', '.js', '.jsx', '.less']
   },
 };
