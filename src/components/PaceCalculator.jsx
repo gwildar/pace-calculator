@@ -13,12 +13,24 @@ export default class PaceCalculator extends React.Component {
     super(props);
   }
 
+  handleDistancdChange (distance) {
+    console.log(distance);
+  }
+
+  handleTimeChange (time) {
+    console.log(time);
+  }
+
+  handlePaceChange (pace) {
+    console.log(pace);
+  }
+
   render() {
     return (
       <Panel header="Pace Calculator">
-          <Distance />
-          <Time />
-          <Pace />
+          <Distance onDistanceChange={this.handleDistanceChange} />
+          <Time onTimeChange={this.handleTimeChange} />
+          <Pace onPaceChange={this.handlePaceChange} />
       </Panel>
     );
   }

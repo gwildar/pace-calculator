@@ -10,13 +10,15 @@ export default class Distance extends React.Component {
   constructor(props) {
     super(props);
     this.state = {distance: "10"};
+    this.distanceChange = this.distanceChange.bind(this);
   }
 
   distanceChange (e) {
     var distance = e.target.value;
     this.setState({distance: distance});
+    this.props.onDistanceChange(distance);
   }
-  
+
   render() {
     return (
       <FormGroup controlId="formDistanceSelect">

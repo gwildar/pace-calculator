@@ -9,7 +9,6 @@ import * as TimeFunctions from './TimeFunctions';
 export default class Pace extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {pace: "00:00:00"};
     this.paceChange = this.paceChange.bind(this);
   }
 
@@ -18,19 +17,20 @@ export default class Pace extends React.Component {
     this.setState({pace: pace});
 
     var seconds = TimeFunctions.convertTimeToSeconds(pace);
-    var distance = this.state.distance;
+    var distance = this.props.distance;
+    console.log("distance: " + distance);
 
     var time = TimeFunctions.calculateTime(distance,seconds);
     time = TimeFunctions.formatTime(time);
 
-    this.setState({time: time});
+    this.props.onPaceChange(time);
   }
 
   render() {
     return (
       <FormGroup controlId="formPace">
         <ControlLabel>Pace</ControlLabel>
-        <FormControl type="time" value={this.state.pace} onChange={this.paceChange} step="1" />
+        <FormControl type="time" value={this.props.data.pace} onChange={this.paceChange} step="1" />
       </FormGroup>
     );
   }
