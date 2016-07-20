@@ -10,38 +10,48 @@ export default class PaceCalculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {time: "00:00:00", pace: "00:00:00", distance: "10"};
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.timeChange = this.timeChange.bind(this);
     this.paceChange = this.paceChange.bind(this);
     this.distanceChange = this.distanceChange.bind(this);
   }
 
-  calculateTime (distance, speed) {
-    var time = distance / speed;
-    return time; 
-  }
-
-  calculateSpeed (distance, time) {
-
-    // calculate km per minute
-    var speed = (time / distance) / 60;
-
-    return speed;
-  }
-
   timeChange(e) {
     var time = e.target.value;
     this.setState({time: time});
+
     var seconds = this.convertTimeToSeconds(time);
     var distance = this.state.distance;
-    var speed = this.calculateSpeed (distance, seconds);
-    var pace = this.formatPace(speed);
-    console.log("pace: " + pace);
+
+    var pace = this.calculateSpeed (distance, seconds);
+
+    console.log("pace " + pace);
+    pace = this.formatTime(pace);
     this.setState({pace : pace});
   }
 
-  formatPace (speed) {
-    // I'm sure a third party library like momentjs could do this way better but I did it anyway
+  paceChange(e) {
+    var pace = e.target.value;
+    this.setState({pace: pace});
+
+    var seconds = this.convertTimeToSeconds(pace);
+    var distance = this.state.distance;
+
+    var time = this.calculateTime(distance,seconds);
+    console.log(time);
+    time = this.formatTime(time);
+    console.log(time);
+
+    this.setState({time: time});
+  }
+
+  distanceChange (e) {
+    var distance = e.target.value;
+    this.setState({distance: distance});
+    
+  }
+
+  formatTime (timeValue) {
+    // I'm sure a third party library like momentjs could do this way better but I did it anyway for the string manipulation practice
 
     var time = {
       hours : "00",
@@ -49,31 +59,39 @@ export default class PaceCalculator extends React.Component {
       seconds : "00"
     }
 
-    var pace = speed.toString().split('.');
+    // this is a noddy way of doing it. Will refactor later. Also doesn't deal with days
+    var hours = (Math.floor(timeValue / 3600));
+    var remainingTime = timeValue - hours * 3600;
+    var minutes = (Math.floor(remainingTime / 60)); 
+    var remainingSeconds = remainingTime - (minutes * 60);
 
-    if (pace[0].length > 2) {
-      time.hours = pace[0].substr(0, - 2);
-    }
+    time.hours = hours.toString();
+    time.minutes = minutes.toString();
+    time.seconds = remainingSeconds.toString();
 
-    time.minutes = pace[0].substr(-2);
-
-    if (pace[1]) {
-      time.seconds = pace[1].substr(0,2);
-    }
+    console.log("remainingTime: " + remainingTime);
+    console.log("minutes: " + minutes);
+    console.log("remainingSeconds: " + remainingSeconds);
 
     for (var prop in time) {
-       console.log("obj." + prop + " = " + time[prop]);
       if (time[prop].length === 1) {
-         time[prop] = "0" + time[prop];
-         console.log("new time: " + time[prop]);
+         time[prop] = "0" + time[prop].toString();
       } 
     }
 
     return time.hours + ":" + time.minutes + ":" + time.seconds; 
   }
 
-  paceChange(e) {
-    console.log(this.state.pace);
+  calculateTime (distance, speed) {
+    // calculate 
+    var time = (speed * distance);
+    return time; 
+  }
+
+  calculateSpeed (distance, time) {
+    // calculate km per minute
+    var speed = (time / distance);
+    return speed;
   }
 
   convertTimeToSeconds (time) {
@@ -82,23 +100,12 @@ export default class PaceCalculator extends React.Component {
       time = time + ":00";
     };
     var a = time.split(':'); 
-    var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
-    return seconds;
-  }
-
-  distanceChange (e) {
-    var distance = e.target.value;
-    this.setState({distance: distance});
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
+    return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
   }
 
   render() {
     return (
       <Panel header="Pace Calculator">
-        <form onSubmit={this.handleSubmit}>
           <FormGroup controlId="formDistanceSelect">
             <ControlLabel>Distance</ControlLabel>
             <FormControl componentClass="select" onChange={this.distanceChange} value={this.state.distance}>
@@ -112,12 +119,8 @@ export default class PaceCalculator extends React.Component {
           </FormGroup>
           <FormGroup controlId="formPace">
             <ControlLabel>Pace</ControlLabel>
-            <FormControl time="time" value={this.state.pace} onChange={this.paceChange} step="1" />
+            <FormControl type="time" value={this.state.pace} onChange={this.paceChange} step="1" />
           </FormGroup>
-          <Button type="submit">
-            Convert
-          </Button>
-        </form>
       </Panel>
     );
   }
