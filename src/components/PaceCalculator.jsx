@@ -11,26 +11,22 @@ import * as TimeFunctions from './TimeFunctions';
 export default class PaceCalculator extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {time: "00:00:00", pace: "00:00:00", distance: "10"};
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleDistancdChange (distance) {
-    console.log(distance);
-  }
-
-  handleTimeChange (time) {
-    console.log(time);
-  }
-
-  handlePaceChange (pace) {
-    console.log(pace);
+  handleChange (time, pace, distance) {
+    this.setState({time: time});
+    this.setState({distance: distance});
+    this.setState({pace: pace});
   }
 
   render() {
     return (
       <Panel header="Pace Calculator">
-          <Distance onDistanceChange={this.handleDistanceChange} />
-          <Time onTimeChange={this.handleTimeChange} />
-          <Pace onPaceChange={this.handlePaceChange} />
+          <Distance distance={this.state.distance} time={this.state.time} pace={this.state.pace} handleChange={this.handleChange} />
+          <Time distance={this.state.distance} time={this.state.time} pace={this.state.pace} handleChange={this.handleChange} />
+          <Pace distance={this.state.distance} pace={this.state.pace} pace={this.state.pace} handleChange={this.handleChange} />
       </Panel>
     );
   }

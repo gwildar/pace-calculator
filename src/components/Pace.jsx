@@ -14,23 +14,20 @@ export default class Pace extends React.Component {
 
   paceChange(e) {
     var pace = e.target.value;
-    this.setState({pace: pace});
-
-    var seconds = TimeFunctions.convertTimeToSeconds(pace);
     var distance = this.props.distance;
-    console.log("distance: " + distance);
-
+    var seconds = TimeFunctions.convertTimeToSeconds(pace);
     var time = TimeFunctions.calculateTime(distance,seconds);
+    
     time = TimeFunctions.formatTime(time);
 
-    this.props.onPaceChange(time);
+    this.props.handleChange (time, pace, distance);
   }
 
   render() {
     return (
       <FormGroup controlId="formPace">
         <ControlLabel>Pace</ControlLabel>
-        <FormControl type="time" value={this.props.data.pace} onChange={this.paceChange} step="1" />
+        <FormControl type="time" value={this.props.pace} onChange={this.paceChange} step="1" />
       </FormGroup>
     );
   }

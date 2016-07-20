@@ -9,21 +9,26 @@ import * as TimeFunctions from './TimeFunctions';
 export default class Distance extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {distance: "10"};
     this.distanceChange = this.distanceChange.bind(this);
   }
 
   distanceChange (e) {
     var distance = e.target.value;
-    this.setState({distance: distance});
-    this.props.onDistanceChange(distance);
+    var time = this.props.time;
+    var pace = this.props.pace;
+
+    var seconds = TimeFunctions.convertTimeToSeconds(time);
+    var pace = TimeFunctions.calculateSpeed (distance, seconds);
+    pace = TimeFunctions.formatTime(pace)
+
+    this.props.handleChange (time, pace, distance);
   }
 
   render() {
     return (
       <FormGroup controlId="formDistanceSelect">
         <ControlLabel>Distance</ControlLabel>
-          <FormControl componentClass="select" onChange={this.distanceChange} value={this.state.distance}>
+          <FormControl componentClass="select" onChange={this.distanceChange} value={this.props.distance}>
           <option value="5">5km</option>
           <option value="10">10km</option>
         </FormControl>
