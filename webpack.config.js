@@ -1,11 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    webpack = require('webpack');
-    StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin'),
-    locals = {
-      routes: [
-      '/',
-      ]
-    };
+    Webpack = require('webpack'),
+    HtmlWebpackPlugin = require ('html-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -16,7 +11,6 @@ module.exports = {
   output: {
     path: './build',
     filename: 'bundle.js',
-    libraryTarget: 'umd',
     publicPath: '/'
   },
   module: {
@@ -24,12 +18,10 @@ module.exports = {
     { 
       test: /\.js?$/, 
       loaders: ['react-hot', 'babel'], 
-      include: __dirname + '/src',
-      exclude: /node_modules/ 
+      include: __dirname + '/src'
     },
     { 
-      test: /\.js$/, 
-      exclude: /node_modules/, 
+      test: /\.js$/,
       loader: 'babel-loader'
     },
     {
@@ -53,11 +45,14 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin("styles.css"),
-    new webpack.NoErrorsPlugin(),
-    new StaticSiteGeneratorPlugin('main', locals.routes)
+    new HtmlWebpackPlugin({
+    title: 'Pace Calculator',
+    template: './src/index.ejs', // Load a custom template (ejs by default see the FAQ for details) 
+    }),
+    new Webpack.NoErrorsPlugin()
   ],
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.less']
+    extensions: ['', '.js',  '.less']
   },
 };
