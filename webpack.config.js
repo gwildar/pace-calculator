@@ -18,11 +18,13 @@ module.exports = {
     { 
       test: /\.js?$/, 
       loaders: ['react-hot', 'babel'], 
-      include: __dirname + '/src'
+      include: __dirname + '/src',
+      exclude: /node_modules/
     },
     { 
       test: /\.js$/,
-      loader: 'babel-loader'
+      loader: 'babel-loader',
+      exclude: /node_modules/
     },
     {
       test: /\.less$/,
