@@ -13,10 +13,21 @@ export default class PaceCalculator extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  calculateTime (distance, speed) {
+    var time = distance / speed;
+    return time; 
+  }
+
+  calculateSpeed (distance, time) {
+    var speed = distance / time;
+    return speed;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log('ce');
+    console.log('cheese');
   }
+
   render() {
     return (
       <Panel header="Pace Calculator">
