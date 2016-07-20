@@ -4,7 +4,7 @@ export function formatTime (timeValue) {
     hours : "00",
     minutes : "00",
     seconds : "00"
-  }
+  };
 
   // this is a noddy way of doing it. Will refactor later. Also doesn't deal with days
   var hours = (Math.floor(timeValue / 3600));
@@ -41,7 +41,8 @@ export function convertTimeToSeconds (time) {
   // when only hours and minutes are set input type="time" only returns hours and minutes. This adds missing seconds
   if (time.length === 5) {
     time = time + ":00";
-  };
+  }
+  
   var a = time.split(':'); 
   return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
 }

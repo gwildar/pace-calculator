@@ -1,7 +1,7 @@
 import React from 'react';
 
-import PaceCalculator from './components/PaceCalculator';
-import Button from 'react-bootstrap/lib/Button';
+import PaceCalculator from './components/PaceCalculator.jsx';
+
 import Grid from 'react-bootstrap/lib/Grid';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
