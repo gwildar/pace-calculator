@@ -4,7 +4,7 @@ import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
 import FormControl from  'react-bootstrap/lib/FormControl';
 
-import TimeFunctions from './TimeFunctions';
+import * as TimeFunctions from './TimeFunctions';
 
 export default class Pace extends React.Component {
   constructor(props) {
