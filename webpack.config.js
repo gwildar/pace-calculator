@@ -14,6 +14,13 @@ module.exports = {
     publicPath: '/'
   },
   module: {
+    preLoaders: [
+      {
+        test: /\.js?$/,
+        loaders: ['jshint'],
+        include: __dirname + '/src',
+      }
+    ],
     loaders: [
     { 
       test: /\.js?$/, 
