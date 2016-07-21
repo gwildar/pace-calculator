@@ -11,7 +11,7 @@ import * as TimeFunctions from './TimeFunctions';
 export default class PaceCalculator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {time: "00:00:00", pace: "00:00:00", distance: "10"};
+    this.state = {time: "00:00:00", pace: "00:00:00", distance: "10", units: "mpkm"};
     this.handleChange = this.handleChange.bind(this);
   }
 

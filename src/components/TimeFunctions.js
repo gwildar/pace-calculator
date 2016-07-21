@@ -47,3 +47,11 @@ export function convertTimeToSeconds (time) {
   return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
 }
 
+export function convertKPMtoMPM (value) {
+  return value * 0.62137119223733;
+}
+
+export function convertMPMtoKPM (value) {
+  return value * 1.609344;
+}
+
