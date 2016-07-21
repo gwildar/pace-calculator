@@ -24,9 +24,9 @@ export default class PaceCalculator extends React.Component {
   render() {
     return (
       <Panel header="Pace Calculator">
-          <Distance distance={this.state.distance} time={this.state.time} pace={this.state.pace} handleChange={this.handleChange} />
-          <Time distance={this.state.distance} time={this.state.time} pace={this.state.pace} handleChange={this.handleChange} />
-          <Pace distance={this.state.distance} pace={this.state.pace} pace={this.state.pace} handleChange={this.handleChange} />
+          <Distance {...this.state} handleChange={this.handleChange} />
+          <Time {...this.state} handleChange={this.handleChange} />
+          <Pace {...this.state} handleChange={this.handleChange} />
       </Panel>
     );
   }

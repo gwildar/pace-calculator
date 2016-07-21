@@ -32,6 +32,7 @@
     "bootstrap-less": "^3.3.8",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "favicons-webpack-plugin": "0.0.6",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.22.0",
     "jshint": "^2.9.2",

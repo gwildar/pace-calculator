@@ -1,6 +1,7 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin'),
     Webpack = require('webpack'),
-    HtmlWebpackPlugin = require ('html-webpack-plugin');
+    HtmlWebpackPlugin = require ('html-webpack-plugin'),
+    FaviconsWebpackPlugin = require ('favicons-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -67,7 +68,26 @@ module.exports = {
       title: 'Pace Calculator',
       template: './src/index.ejs', 
     }),
-    new Webpack.NoErrorsPlugin()
+    new Webpack.NoErrorsPlugin(),
+    new FaviconsWebpackPlugin({
+    logo: './src/favicon.png',
+    inject: true,
+    background: '#fff',
+    title: 'Pace Calculator',
+    icons: {
+      android: true,
+      appleIcon: true,
+      appleStartup: true,
+      coast: false,
+      favicons: true,
+      firefox: true,
+      opengraph: false,
+      twitter: false,
+      yandex: false,
+      windows: true
+    }
+  })
+
   ],
   resolve: {
     modulesDirectories: ['node_modules'],
