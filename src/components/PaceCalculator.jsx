@@ -20,7 +20,7 @@ export default class PaceCalculator extends React.Component {
     this.setState({distance: distance});
     this.setState({pace: pace});
   }
-
+  
   render() {
     return (
       <Panel header="Pace Calculator">
