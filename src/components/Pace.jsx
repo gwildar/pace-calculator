@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import FormGroup from 'react-bootstrap/lib/FormGroup';
 import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import FormControl from  'react-bootstrap/lib/FormControl';
-import Grid from 'react-bootstrap/lib/Grid';
+import FormControl from 'react-bootstrap/lib/FormControl';
 import Row from 'react-bootstrap/lib/Row';
 import Col from 'react-bootstrap/lib/Col';
 
@@ -17,36 +16,30 @@ export default class Pace extends React.Component {
   }
 
   paceChange(e) {
-    var pace = e.target.value;
-    var distance = this.props.distance;
-    var seconds = TimeFunctions.convertTimeToSeconds(pace);
-    var time = TimeFunctions.calculateTime(distance,seconds);
-    
-    time = TimeFunctions.formatTime(time);
+    const pace = e.target.value;
+    const distance = this.props.distance;
+    const seconds = TimeFunctions.convertTimeToSeconds(pace);
+    let time = TimeFunctions.calculateTime(distance, seconds);
 
-    this.props.handleChange (time, pace, distance);
-    debugger;
+    time = TimeFunctions.formatTime(time);
+    this.props.handleChange(time, pace, distance, 'success');
   }
 
   unitChange(e) {
-    var pace = TimeFunctions.convertTimeToSeconds(this.props.pace);
-    var unit = e.target.value;
-    var distance = this.props.distance;
-    var time = this.props.time;
-    if (unit === "mpkm") { 
+    let pace = TimeFunctions.convertTimeToSeconds(this.props.pace);
+    const unit = e.target.value;
+    if (unit === 'mpkm') {
+      pace = TimeFunctions.convertKPMtoMPM(pace);
+    } else if (unit === 'mpm') {
       pace = TimeFunctions.convertKPMtoMPM(pace);
     }
-    else if (unit === "mpm") {
-      pace = TimeFunctions.convertKPMtoMPM(pace);
-    }
-    debugger;
   }
 
   render() {
     return (
-     <Row className="show-grid">
-        <Col xs={7}> 
-          <FormGroup controlId="formPace">
+      <Row className="show-grid">
+        <Col xs={7}>
+          <FormGroup controlId="formPace" validationState={this.props.validation}>
             <ControlLabel>Pace</ControlLabel>
             <FormControl type="time" value={this.props.pace} onChange={this.paceChange} step="1" />
           </FormGroup>
@@ -64,3 +57,11 @@ export default class Pace extends React.Component {
     );
   }
 }
+
+Pace.propTypes = {
+  distance: PropTypes.number,
+  handleChange: PropTypes.func,
+  pace: PropTypes.number,
+  validation: PropTypes.string,
+  mpkm: PropTypes.React.PropTypes.string,
+};

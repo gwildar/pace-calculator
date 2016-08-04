@@ -17,9 +17,9 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js?$/,
-        loaders: ['jshint'],
-        include: __dirname + '/src',
+        test: /\.jsx?$/,
+        loader: 'eslint',
+        exclude: /node_modules/
       }
     ],
     loaders: [
@@ -89,8 +89,13 @@ module.exports = {
   })
 
   ],
+    eslint: {
+    failOnWarning: false,
+    failOnError: true
+  },
+  
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.jsx', '.less']
+    extensions: ['', '.ejs', '.js', 'jsx', '.less']
   },
 };
