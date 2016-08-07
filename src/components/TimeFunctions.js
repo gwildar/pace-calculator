@@ -60,3 +60,17 @@ export function convertKPMtoMPM(value) {
 export function convertMPMtoKPM(value) {
   return value * 1.609344;
 }
+
+// as an exercise I made a padLeft function. I'm aware how noddy this is. 
+function padLeft(str, length, char) {
+  let pad = '';
+  const cLength = char.length;
+  const sLength = str.length;
+
+  if (length - cLength < 0) {
+    pad = pad.substring(0, cLength - sLength);
+  } else {
+    pad = char.repeat(cLength * length);
+  }
+  return `${pad + str}`;
+}
