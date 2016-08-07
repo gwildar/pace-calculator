@@ -41,9 +41,9 @@ export default class Distance extends React.Component {
 }
 
 Distance.propTypes = {
-  distance: PropTypes.number,
-  time: PropTypes.number,
+  distance: PropTypes.string,
+  time: PropTypes.string,
   handleChange: PropTypes.func,
-  pace: PropTypes.number,
+  pace: PropTypes.string,
   validation: PropTypes.string,
 };

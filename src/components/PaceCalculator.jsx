@@ -14,7 +14,7 @@ export default class PaceCalculator extends React.Component {
       pace: '00:00:00',
       distance: '10',
       units: 'mpkm',
-      validation: '',
+      validation: null,
     };
     this.handleChange = this.handleChange.bind(this);
   }

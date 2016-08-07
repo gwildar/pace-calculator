@@ -59,9 +59,10 @@ export default class Pace extends React.Component {
 }
 
 Pace.propTypes = {
-  distance: PropTypes.number,
+  distance: PropTypes.string,
+  time: PropTypes.string,
   handleChange: PropTypes.func,
-  pace: PropTypes.number,
+  pace: PropTypes.string,
   validation: PropTypes.string,
-  mpkm: PropTypes.React.PropTypes.string,
+  mpkm: PropTypes.string,
 };

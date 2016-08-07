@@ -19,9 +19,15 @@ export function formatTime(timeValue) {
   time.minutes = minutes.toString();
   time.seconds = seconds.toString();
 
-  const newTime = time.map(item => `0, ${item}`);
+  // again a noddy way, should be more generic
+  /*
+  time = time.reduce(time, (memo, val, key) => {
+    memo[key] = val.length === 1 ? `0,${val}` : val;
+    return memo;
+  }, {});
+  */
 
-  return `${newTime.hours},:,${newTime.minutes},:,${newTime.seconds}`;
+  return time.reduce((a, b) => `:${a.concat(b)}`, []);
 }
 
 export function calculateTime(distance, speed) {
