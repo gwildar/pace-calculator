@@ -1,11 +1,20 @@
+// as an exercise I made a padLeft function. I'm aware how noddy this is.
+function padLeft(str, length, char) {
+  let pad = '';
+  const cLength = char.length;
+  const sLength = str.length;
+  if ((length - cLength) < 0) {
+    pad = pad.substring(0, cLength - sLength);
+  } else if (length >= sLength) {
+    pad = char.repeat(cLength * length);
+  }
+  return `${pad + str}`;
+}
+
 export function formatTime(timeValue) {
   // I'm sure a third party library like momentjs could do this way better
   // but I did it anyway for the string manipulation practice
-  const time = {
-    hours: '00',
-    minutes: '00',
-    seconds: '00',
-  };
+  const time = [];
 
   // this is a noddy way of doing it. Will refactor later.
   // Also doesn't deal with days
@@ -15,19 +24,16 @@ export function formatTime(timeValue) {
   const minutes = (Math.floor(remainingTime / 60));
   const seconds = remainingTime - (minutes * 60);
 
-  time.hours = hours.toString();
-  time.minutes = minutes.toString();
-  time.seconds = seconds.toString();
+  time.push(hours.toString());
+  time.push(minutes.toString());
+  time.push(seconds.toString());
 
-  // again a noddy way, should be more generic
-  /*
-  time = time.reduce(time, (memo, val, key) => {
-    memo[key] = val.length === 1 ? `0,${val}` : val;
-    return memo;
-  }, {});
-  */
+  let newTime = [];
 
-  return time.reduce((a, b) => `:${a.concat(b)}`, []);
+  newTime = time.map(unit => padLeft(unit, 1, '0'))
+                .reduce((previousValue, currentValue) => previousValue + currentValue);
+
+  return newTime;
 }
 
 export function calculateTime(distance, speed) {
@@ -61,16 +67,3 @@ export function convertMPMtoKPM(value) {
   return value * 1.609344;
 }
 
-// as an exercise I made a padLeft function. I'm aware how noddy this is. 
-function padLeft(str, length, char) {
-  let pad = '';
-  const cLength = char.length;
-  const sLength = str.length;
-
-  if (length - cLength < 0) {
-    pad = pad.substring(0, cLength - sLength);
-  } else {
-    pad = char.repeat(cLength * length);
-  }
-  return `${pad + str}`;
-}
