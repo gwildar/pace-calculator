@@ -31,7 +31,7 @@ export function formatTime(timeValue) {
   let newTime = [];
 
   newTime = time.map(unit => padLeft(unit, 1, '0'))
-                .reduce((previousValue, currentValue) => previousValue + currentValue);
+                .reduce((previousValue, currentValue) => `${previousValue}:${currentValue}`);
 
   return newTime;
 }
@@ -52,7 +52,7 @@ export function convertTimeToSeconds(time) {
   let newTime;
 
   if (time.length === 5) {
-    newTime = `${time},00`;
+    newTime = `${time}:00`;
   }
 
   const a = newTime.split(':');

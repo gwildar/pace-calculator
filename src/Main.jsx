@@ -2,9 +2,7 @@ import React from 'react';
 
 import PaceCalculator from './components/PaceCalculator.jsx';
 
-import Grid from 'react-bootstrap/lib/Grid';
-import Row from 'react-bootstrap/lib/Row';
-import Col from 'react-bootstrap/lib/Col';
+import { Grid, Row, Col } from 'react-bootstrap';
 
 // react-bootstrap suggest using the CDN bootstrap styles.
 // I have no wish to do that so instead I'm useing bootstrap-less.
@@ -13,6 +11,12 @@ import Col from 'react-bootstrap/lib/Col';
 
 import 'bootstrap-less/bootstrap/bootstrap.less';
 import './main.less';
+
+import { createStore } from 'redux';
+
+import reducer from 'store.js';
+
+const store = createStore(reducer, window.CALCULATOR_DATA);
 
 const Main = () => (
   <Grid>

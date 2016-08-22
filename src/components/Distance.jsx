@@ -1,49 +1,23 @@
 import React, { PropTypes } from 'react';
 
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import FormControl from 'react-bootstrap/lib/FormControl';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-import * as TimeFunctions from './TimeFunctions';
 
-export default class Distance extends React.Component {
-  constructor(props) {
-    super(props);
-    this.distanceChange = this.distanceChange.bind(this);
-  }
-
-  distanceChange(e) {
-    const distance = e.target.value;
-    const time = this.props.time;
-    let pace = this.props.pace;
-
-    const seconds = TimeFunctions.convertTimeToSeconds(time);
-    pace = TimeFunctions.calculateSpeed(distance, seconds);
-    pace = TimeFunctions.formatTime(pace);
-    this.props.handleChange(time, pace, distance);
-  }
-
-  render() {
-    return (
-      <FormGroup controlId="formDistanceSelect" validationState={this.props.validation}>
-        <ControlLabel>Distance</ControlLabel>
-        <FormControl
-          componentClass="select"
-          onChange={this.distanceChange}
-          value={this.props.distance}
-        >
-          <option value="5">5km</option>
-          <option value="10">10km</option>
-        </FormControl>
-      </FormGroup>
-    );
-  }
+const Distance = (props) => {
+  <FormGroup controlId="formDistanceSelect">
+    <ControlLabel>Distance</ControlLabel>
+    <FormControl
+      componentClass="select"
+      onChange={props.distanceChange}
+      value={props.distance}
+    >
+      <option value="5">5km</option>
+      <option value="10">10km</option>
+    </FormControl>
+  </FormGroup>
 }
 
 Distance.propTypes = {
   distance: PropTypes.string,
-  time: PropTypes.string,
-  handleChange: PropTypes.func,
-  pace: PropTypes.string,
-  validation: PropTypes.string,
+  distanceChange: PropTypes.func,
 };
