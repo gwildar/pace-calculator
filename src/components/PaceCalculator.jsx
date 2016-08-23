@@ -6,21 +6,12 @@ import Distance from './Distance.jsx';
 import Time from './Time.jsx';
 import Pace from './Pace.jsx';
 
-import { updateCalculator } from '../actions/update.js';
-
 import * as TimeFunctions from './TimeFunctions';
 
 
 class PaceCalculator extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      time: '00:00:00',
-      pace: '00:00:00',
-      distance: '10',
-      units: 'mpkm',
-      validation: null,
-    };
   }
 
   paceChange(e) {
@@ -67,9 +58,9 @@ class PaceCalculator extends React.Component {
   render() {
     return (
       <Panel header="Pace Calculator">
-        <Distance {...this.state} handleChange={this.handleChange} />
-        <Time {...this.state} handleChange={this.handleChange} />
-        <Pace {...this.state} handleChange={this.handleChange} />
+        <Distance {...this.state} distanceChange={this.distanceChange} />
+        <Time {...this.state} timeChange={this.timeChange} />
+        <Pace {...this.state} paceChange={this.paceChange} />
       </Panel>
     );
   }
@@ -81,12 +72,3 @@ PaceCalculator.propTypes = {
   distance: PropTypes.number,
   units: PropTypes.string,
 };
-
-const mapStateToProps = (state) => ({
-  time: '00:00:00',
-  pace: '00:00:00',
-  distance: '10',
-  units: 'mpkm',
-});
-
-export default connect(mapStateToProps, { update })(PaceCalculator);

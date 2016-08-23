@@ -22,10 +22,3 @@ const Pace = (props) => {
     </Col>
   </Row>
 }
-
-Pace.propTypes = {
-  unitChange: PropTypes.func,
-  paceChange: PropTypes.func,
-  pace: PropTypes.string,
-  mpkm: PropTypes.string,
-};

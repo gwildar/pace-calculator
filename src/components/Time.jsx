@@ -6,7 +6,7 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 const Time = (props) => {
   <FormGroup controlId="formTime">
     <ControlLabel>Time</ControlLabel>
-    <FormControl type="time" value={props.time} onChange={pace.timeChange} step="1" />
+    <FormControl type="time" value={props.time} onChange={props.timeChange} step="1" />
   </FormGroup>
 }
 

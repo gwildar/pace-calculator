@@ -12,12 +12,6 @@ import { Grid, Row, Col } from 'react-bootstrap';
 import 'bootstrap-less/bootstrap/bootstrap.less';
 import './main.less';
 
-import { createStore } from 'redux';
-
-import reducer from 'store.js';
-
-const store = createStore(reducer, window.CALCULATOR_DATA);
-
 const Main = () => (
   <Grid>
     <Row className="show-grid">
