@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl, Row, Col } from 'react-bootstrap';
 
 
-const Pace = (props) => {
+const Pace = (props) => (
   <Row className="show-grid">
     <Col xs={7}>
       <FormGroup controlId="formPace">
@@ -21,4 +21,13 @@ const Pace = (props) => {
       </FormGroup>
     </Col>
   </Row>
-}
+);
+
+Pace.propTypes = {
+  pace: PropTypes.string,
+  mpkm: PropTypes.string, // should be oneOf
+  paceChange: PropTypes.function,
+  unitChange: PropTypes.unitChange,
+};
+
+export default Pace;

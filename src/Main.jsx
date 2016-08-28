@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PaceCalculator from './components/PaceCalculator.jsx';
+import PaceCalculator from './containers/PaceCalculator.jsx';
 
 import { Grid, Row, Col } from 'react-bootstrap';
 

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 
-const Distance = (props) => {
+const Distance = (props) => (
   <FormGroup controlId="formDistanceSelect">
     <ControlLabel>Distance</ControlLabel>
     <FormControl
@@ -15,9 +15,11 @@ const Distance = (props) => {
       <option value="10">10km</option>
     </FormControl>
   </FormGroup>
-}
+);
 
 Distance.propTypes = {
   distance: PropTypes.string,
   distanceChange: PropTypes.func,
 };
+
+export default Distance;

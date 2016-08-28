@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import { Panel } from 'react-bootstrap';
 
-import Distance from './Distance.jsx';
-import Time from './Time.jsx';
-import Pace from './Pace.jsx';
+import { Distance, Time, Pace } from '../components';
 
-import * as TimeFunctions from './TimeFunctions';
+import * as TimeFunctions from '../utilities/TimeFunctions';
 
 
 class PaceCalculator extends React.Component {
   constructor(props) {
     super(props);
+    this.paceChange = this.paceChange.bind(this);
+    this.timeChange = this.timeChange.bind(this);
+    this.distanceChange = this.distanceChange.bind(this);
+  }
+
+  handleChange() {
   }
 
   paceChange(e) {
@@ -21,7 +25,7 @@ class PaceCalculator extends React.Component {
     let time = TimeFunctions.calculateTime(distance, seconds);
 
     time = TimeFunctions.formatTime(time);
-    this.props.handleChange(time, pace, distance, 'success');
+    // this.props.handleChange(time, pace, distance, 'success');
   }
 
   timeChange(e) {
@@ -31,7 +35,7 @@ class PaceCalculator extends React.Component {
     let pace = TimeFunctions.calculateSpeed(distance, seconds);
     pace = TimeFunctions.formatTime(pace);
 
-    this.props.handleChange(time, pace, distance);
+    // this.props.handleChange(time, pace, distance);
   }
 
   distanceChange(e) {
@@ -42,7 +46,7 @@ class PaceCalculator extends React.Component {
     const seconds = TimeFunctions.convertTimeToSeconds(time);
     pace = TimeFunctions.calculateSpeed(distance, seconds);
     pace = TimeFunctions.formatTime(pace);
-    this.props.handleChange(time, pace, distance);
+    // this.props.handleChange(time, pace, distance);
   }
 
   unitChange(e) {
