@@ -8,13 +8,13 @@ const Pace = (props) => (
     <Col xs={7}>
       <FormGroup controlId="formPace">
         <ControlLabel>Pace</ControlLabel>
-        <FormControl type="time" value={props.pace} onChange={props.paceChange} step="1" />
+        <FormControl type="text" value={props.pace} pacechange={props.paceChange} />
       </FormGroup>
     </Col>
     <Col xs={5}>
       <FormGroup controlId="formUnitSelect">
         <ControlLabel>Units</ControlLabel>
-        <FormControl componentClass="select" onChange={props.unitChange} value={props.mpkm}>
+        <FormControl componentClass="select">
           <option value="mpkm">km / minute</option>
           <option value="mpm">mile / minute</option>
         </FormControl>
@@ -25,9 +25,7 @@ const Pace = (props) => (
 
 Pace.propTypes = {
   pace: PropTypes.string,
-  mpkm: PropTypes.string, // should be oneOf
-  paceChange: PropTypes.function,
-  unitChange: PropTypes.unitChange,
+  paceChange: PropTypes.func.isRequired,
 };
 
 export default Pace;

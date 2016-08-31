@@ -6,7 +6,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 import updateCalculator from './reducers.js';
 
-import PaceCalculator from './components/PaceCalculator.jsx';
+import UpdateCalculator from './containers/UpdateCalculator.js';
 
 import 'bootstrap-less/bootstrap/bootstrap.less';
 import './main.less';
@@ -18,7 +18,7 @@ ReactDOM.render(
     <Grid>
       <Row className="show-grid">
         <Col sm={6} smOffset={3}>
-          <PaceCalculator />
+          <UpdateCalculator />
         </Col>
       </Row>
     </Grid>

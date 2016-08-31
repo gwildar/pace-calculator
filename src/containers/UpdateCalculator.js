@@ -1,28 +1,23 @@
 import { connect } from 'react-redux';
-import actions from '../actions';
+import { updateTime } from '../actions';
 
-import PaceCalculator from '../components/PaceCalculator';
+import PaceCalculator from '../components/PaceCalculator.jsx';
 
+const mapStateToProps = (state) => ({
+  time: state.time,
+  distance: state.distance,
+  pace: state.pace,
+});
 
-const mapStateToProps = (state) => {
-  return {
-    time: "1",
-    distance: "2",
-    pace: "3",
-  }
-}
-
-const mapDispatchToProps = (Dispatch) => {
-  return {
-    distanceChange : (distance) => {
-      dispatch(updateDistance(distance))
-    }
-  }
-}
+const mapDispatchToProps = (dispatch) => ({
+  paceChange: () => {
+    dispatch(updateTime(10));
+  },
+});
 
 const UpdateCalculator = connect(
   mapStateToProps,
   mapDispatchToProps
-)(PaceCalculator)
+)(PaceCalculator);
 
 export default UpdateCalculator;
