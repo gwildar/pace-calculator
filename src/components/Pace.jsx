@@ -11,10 +11,10 @@ const Pace = (props) => (
         <FormControl
           type="text"
           defaultValue={props.pace}
-          onClick={props.onInputChange}
           thing="PACE"
         />
       </FormGroup>
+      <button onClick={props.onInputChange}>test</button>
     </Col>
   </Row>
 );
