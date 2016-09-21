@@ -8,16 +8,12 @@ const Pace = (props) => (
     <Col xs={7}>
       <FormGroup controlId="formPace">
         <ControlLabel>Pace</ControlLabel>
-        <FormControl type="text" value={props.pace} />
-      </FormGroup>
-    </Col>
-    <Col xs={5}>
-      <FormGroup controlId="formUnitSelect">
-        <ControlLabel>Units</ControlLabel>
-        <FormControl componentClass="select">
-          <option value="mpkm">km / minute</option>
-          <option value="mpm">mile / minute</option>
-        </FormControl>
+        <FormControl
+          type="text"
+          defaultValue={props.pace}
+          onClick={props.onInputChange}
+          thing="PACE"
+        />
       </FormGroup>
     </Col>
   </Row>
@@ -25,6 +21,7 @@ const Pace = (props) => (
 
 Pace.propTypes = {
   pace: PropTypes.string,
+  onInputChange: PropTypes.func,
 };
 
 export default Pace;
