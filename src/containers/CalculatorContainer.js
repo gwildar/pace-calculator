@@ -21,6 +21,7 @@ const calculateChange = (data, value) => {
 
 const mapStateToProps = (state) => ({
   data: calculateChange(state.data, state.updateCalulator),
+  lastChanged: state.lastChanged,
 });
 
 const mapDispatchToProps = (dispatch) => ({
