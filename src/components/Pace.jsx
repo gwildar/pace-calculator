@@ -8,7 +8,7 @@ const Pace = (props) => (
     <Col xs={7}>
       <FormGroup controlId="formPace">
         <ControlLabel>Pace</ControlLabel>
-        <FormControl type="text" value={props.pace} pacechange={props.paceChange} />
+        <FormControl type="text" value={props.pace} />
       </FormGroup>
     </Col>
     <Col xs={5}>
@@ -25,7 +25,6 @@ const Pace = (props) => (
 
 Pace.propTypes = {
   pace: PropTypes.string,
-  paceChange: PropTypes.func.isRequired,
 };
 
 export default Pace;

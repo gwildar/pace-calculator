@@ -23,9 +23,9 @@ module.exports = {
       }
     ],
     loaders: [
-      { 
-        test: /\.js?$/, 
-        loaders: ['react-hot', 'babel'], 
+      {
+        test: /\.js?$/,
+        loaders: ['react-hot', 'babel'],
         include: __dirname + '/src',
         exclude: /node_modules/
       },
@@ -44,21 +44,21 @@ module.exports = {
         test: /\.less$/,
         loader: ExtractTextPlugin.extract('css?sourceMap!less?sourceMap')
       },
-      { 
-        test: /\.(woff|woff2)$/,  
-        loader: "url-loader?limit=10000&mimetype=application/font-woff" 
+      {
+        test: /\.(woff|woff2)$/,
+        loader: "url-loader?limit=10000&mimetype=application/font-woff"
       },
-      { 
-        test: /\.ttf$/,    
-        loader: "file-loader" 
+      {
+        test: /\.ttf$/,
+        loader: "file-loader"
       },
-      { 
-        test: /\.eot$/,    
-        loader: "file-loader" 
+      {
+        test: /\.eot$/,
+        loader: "file-loader"
       },
-      { 
-        test: /\.svg$/,    
-        loader: "file-loader" 
+      {
+        test: /\.svg$/,
+        loader: "file-loader"
       }
     ],
   },
@@ -66,7 +66,7 @@ module.exports = {
     new ExtractTextPlugin("styles.css"),
     new HtmlWebpackPlugin({
       title: 'Pace Calculator',
-      template: './src/index.ejs', 
+      template: './src/index.ejs',
     }),
     new Webpack.NoErrorsPlugin(),
     new FaviconsWebpackPlugin({
@@ -93,7 +93,7 @@ module.exports = {
     failOnWarning: false,
     failOnError: true
   },
-  
+
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.ejs', '.js', 'jsx', '.less']

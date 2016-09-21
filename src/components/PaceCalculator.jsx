@@ -5,14 +5,14 @@ import { Distance, Pace, Time } from '../components';
 
 const PaceCalculator = (props) => (
   <Panel header="Pace Calculator">
-    <Distance />
-    <Time {...props} />
-    <Pace {...props} paceChange={props.paceChange} />
+    <Distance distance={props.data.distance} />
+    <Time time={props.data.time} />
+    <Pace pace={props.data.pace} />
   </Panel>
 );
 
 PaceCalculator.propTypes = {
-  paceChange: PropTypes.func.isRequired,
+  data: PropTypes.object,
 };
 
 export default PaceCalculator;
