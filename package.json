@@ -25,6 +25,7 @@
   "homepage": "https://github.com/gwildar/pace-calculator#readme",
   "dependencies": {
     "bootstrap-less": "^3.3.8",
+    "bootstrap-material-design": "^0.5.10",
     "react": "~15.1.0",
     "react-bootstrap": "^0.29.5",
     "react-dom": "~15.1.0",

@@ -9,6 +9,7 @@ import paceCalculator from './reducers.js';
 import CalculatorContainer from './containers/CalculatorContainer.js';
 
 import 'bootstrap-less/bootstrap/bootstrap.less';
+import 'bootstrap-material-design/less/bootstrap-material-design.less';
 import './main.less';
 
 const store = createStore(paceCalculator);
