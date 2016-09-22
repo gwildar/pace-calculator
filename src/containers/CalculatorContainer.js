@@ -25,8 +25,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onInputChange: () => {
-    dispatch(updateCalulator('CHEESE'));
+  onInputChange: (value) => {
+    dispatch(updateCalulator(value));
   },
 });
 

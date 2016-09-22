@@ -9,8 +9,7 @@ const Time = (props) => (
     <FormControl
       type="text"
       defaultValue={props.time}
-      onChange={props.onInputChange}
-      thing="TIME"
+      onChange={() => props.onInputChange('TIME')}
     />
   </FormGroup>
 );
