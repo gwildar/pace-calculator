@@ -7,16 +7,17 @@ const Time = (props) => (
   <FormGroup controlId="formTime">
     <ControlLabel>Time</ControlLabel>
     <FormControl
-      type="text"
-      defaultValue={props.time}
-      onChange={() => props.onInputChange('TIME')}
+      type="time"
+      value={props.time}
+      step="1"
+      onChange={(e) => props.onInputChange(e.target.value, 'TIME')}
     />
   </FormGroup>
 );
 
 Time.propTypes = {
   time: PropTypes.string,
-  onInputChange: PropTypes.func,
+  onInputChange: PropTypes.func.isRequired,
 };
 
 export default Time;

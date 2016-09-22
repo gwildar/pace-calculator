@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
 import { Panel } from 'react-bootstrap';
-import { Pace, Time } from '../components';
+import { Distance, Pace, Time } from '../components';
 
 const PaceCalculator = (props) => (
-  <Panel header="Pace Calculator">
-    {props.lastChanged}
+  <Panel header={<h1>Pace Calculator</h1>} bsStyle="primary">
+    <Distance onInputChange={props.onInputChange} />
     <Time time={props.data.time} onInputChange={props.onInputChange} />
     <Pace pace={props.data.pace} onInputChange={props.onInputChange} />
   </Panel>

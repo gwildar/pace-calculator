@@ -3,7 +3,17 @@ export const updateCalulator = (value) => ({
   value,
 });
 
-export const fakeThing = (value) => ({
-  type: 'FAKEY',
+export const updatePace = (value) => ({
+  type: 'PACE',
+  value,
+});
+
+export const updateTime = (value) => ({
+  type: 'TIME',
+  value,
+});
+
+export const updateDistance = (value) => ({
+  type: 'DISTANCE',
   value,
 });

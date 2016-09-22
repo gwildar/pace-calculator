@@ -1,6 +1,12 @@
 import { connect } from 'react-redux';
 
-import { updateCalulator } from '../actions';
+import {
+  updateCalulator,
+  updatePace,
+  updateTime,
+  updateDistance,
+} from '../actions';
+
 import PaceCalculator from '../components/PaceCalculator.jsx';
 
 const getData = (data) => (data);
@@ -27,8 +33,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onInputChange: (value) => {
+  onInputChange: (unit, value) => {
     dispatch(updateCalulator(value));
+    switch (value) {
+      case 'PACE':
+        return dispatch(updatePace(unit));
+      case 'TIME':
+        return dispatch(updateTime(unit));
+      case 'DISTANCE':
+        return dispatch(updateDistance(unit));
+      default:
+        return null;
+    }
   },
 });
 
