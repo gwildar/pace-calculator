@@ -12,12 +12,8 @@ const data = (state = initialSetup, action) => {
 const lastChanged = (state = 'TEST', action) => {
   switch (action.type) {
     case 'UPDATE_CALCULATOR':
-      // eslint-disable-next-line
-      console.log(action.value);
       return action.value;
     default:
-      // eslint-disable-next-line
-      console.log("not working");
       return state;
   }
 };

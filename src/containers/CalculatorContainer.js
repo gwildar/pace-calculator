@@ -6,6 +6,8 @@ import PaceCalculator from '../components/PaceCalculator.jsx';
 const getData = (data) => (data);
 
 const calculateChange = (data, value) => {
+  // eslint-disable-next-line
+  console.log(`lastChanged: ${value}`);
   switch (value) {
     case 'PACE':
       return getData(data);
@@ -20,7 +22,7 @@ const calculateChange = (data, value) => {
 
 
 const mapStateToProps = (state) => ({
-  data: calculateChange(state.data, state.updateCalulator),
+  data: calculateChange(state.data, state.lastChanged),
   lastChanged: state.lastChanged,
 });
 
