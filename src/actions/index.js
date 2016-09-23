@@ -17,3 +17,10 @@ export const updateDistance = (value) => ({
   type: 'DISTANCE',
   value,
 });
+
+export const updateAll = (distance, pace, time) => ({
+	type: 'UPDATE_ALL',
+	distance,
+	pace,
+	time,
+})

@@ -1,22 +1,31 @@
 import { connect } from 'react-redux';
 
+import * as TimeFunctions from './TimeFunctions';
+
 import {
   updateCalulator,
   updatePace,
   updateTime,
   updateDistance,
+  updateAll,
 } from '../actions';
 
 import PaceCalculator from '../components/PaceCalculator.jsx';
 
 const getData = (data) => (data);
 
+const calculatePace = (data) => ({
+    const time = TimeFunctions.formatTime(TimeFunctions.calculateTime(data.distance, seconds));
+    const newData = {time, pace: data.pace, distance: data.distance };
+    return newData;
+});
+
 const calculateChange = (data, value) => {
   // eslint-disable-next-line
   console.log(`lastChanged: ${value}`);
   switch (value) {
     case 'PACE':
-      return getData(data);
+      return calculatePace(data);
     case 'TIME':
       return getData(data);
     case 'DISTANCE':
@@ -45,6 +54,9 @@ const mapDispatchToProps = (dispatch) => ({
       default:
         return null;
     }
+  },
+  updateAll: (distance, pace, time) => {
+    dispatch(updateAll(distance, pace, time));
   },
 });
 

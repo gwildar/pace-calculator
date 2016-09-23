@@ -16,6 +16,12 @@ const data = (state = initialSetup, action) => {
       return Object.assign({}, state, {
         distance: action.value,
       });
+    case 'UPDATE_ALL':
+      return Object.assign({}, state, {
+        pace: action.pace,
+        distance: action.distance,
+        time: action.time,
+      });
     default:
       return state;
   }
