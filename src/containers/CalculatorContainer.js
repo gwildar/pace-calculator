@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import * as TimeFunctions from './TimeFunctions';
+import * as TimeFunctions from '../utilities/TimeFunctions';
 
 import {
   updateCalulator,
@@ -14,11 +14,12 @@ import PaceCalculator from '../components/PaceCalculator.jsx';
 
 const getData = (data) => (data);
 
-const calculatePace = (data) => ({
-    const time = TimeFunctions.formatTime(TimeFunctions.calculateTime(data.distance, seconds));
-    const newData = {time, pace: data.pace, distance: data.distance };
-    return newData;
-});
+const calculatePace = (data) => {
+  const seconds = TimeFunctions.convertTimeToSeconds(data.pace);
+  const newTime = TimeFunctions.formatTime(TimeFunctions.calculateTime(data.distance, seconds));
+  const newData = { time: newTime, pace: data.pace, distance: data.distance };
+  return newData;
+};
 
 const calculateChange = (data, value) => {
   // eslint-disable-next-line
