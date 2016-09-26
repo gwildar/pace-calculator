@@ -1,6 +1,11 @@
 import { connect } from 'react-redux';
 
-import * as TimeFunctions from '../utilities/TimeFunctions';
+import {
+  convertTimeToSeconds,
+  formatTime,
+  calculateTime,
+  calculateSpeed,
+} from '../utilities/TimeFunctions';
 
 import {
   updateCalulator,
@@ -15,22 +20,28 @@ import PaceCalculator from '../components/PaceCalculator.jsx';
 const getData = (data) => (data);
 
 const calculatePace = (data) => {
-  const seconds = TimeFunctions.convertTimeToSeconds(data.pace);
-  const newTime = TimeFunctions.formatTime(TimeFunctions.calculateTime(data.distance, seconds));
+  const seconds = convertTimeToSeconds(data.pace);
+  const newTime = formatTime(calculateTime(data.distance, seconds));
   const newData = { time: newTime, pace: data.pace, distance: data.distance };
   return newData;
 };
 
+const calculateNewTime = (data) => {
+  const seconds = convertTimeToSeconds(data.time);
+  const newPace = formatTime(calculateSpeed(data.distance, seconds));
+  const newData = { time: data.time, pace: newPace, distance: data.distance };
+  return newData;
+};
+
+
 const calculateChange = (data, value) => {
-  // eslint-disable-next-line
-  console.log(`lastChanged: ${value}`);
   switch (value) {
     case 'PACE':
       return calculatePace(data);
     case 'TIME':
-      return getData(data);
+      return calculateNewTime(data);
     case 'DISTANCE':
-      return getData(data);
+      return calculateNewTime(data);
     default:
       return getData(data);
   }

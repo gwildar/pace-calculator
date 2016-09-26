@@ -1,15 +1,5 @@
-// as an exercise I made a padLeft function. I'm aware how noddy this is.
-function padLeft(str, length, char) {
-  let pad = '';
-  const cLength = char.length;
-  const sLength = str.length;
-  if ((length - cLength) < 0) {
-    pad = pad.substring(0, cLength - sLength);
-  } else if (length >= sLength) {
-    pad = char.repeat(cLength * length);
-  }
-  return `${pad + str}`;
-}
+import { padStart } from 'lodash';
+
 
 export function formatTime(timeValue) {
   // I'm sure a third party library like momentjs could do this way better
@@ -30,7 +20,7 @@ export function formatTime(timeValue) {
 
   let newTime = [];
 
-  newTime = time.map(unit => padLeft(unit, 1, '0'))
+  newTime = time.map(unit => padStart(unit, 2, '0'))
                 .reduce((previousValue, currentValue) => `${previousValue}:${currentValue}`);
 
   return newTime;
