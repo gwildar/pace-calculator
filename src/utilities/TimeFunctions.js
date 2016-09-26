@@ -1,29 +1,20 @@
-import { padStart } from 'lodash';
+import { padStart, round } from 'lodash';
 
 
 export function formatTime(timeValue) {
-  // I'm sure a third party library like momentjs could do this way better
-  // but I did it anyway for the string manipulation practice
   const time = [];
-
-  // this is a noddy way of doing it. Will refactor later.
-  // Also doesn't deal with days
 
   const hours = (Math.floor(timeValue / 3600));
   const remainingTime = timeValue - hours * 3600;
   const minutes = (Math.floor(remainingTime / 60));
-  const seconds = remainingTime - (minutes * 60);
+  let seconds = round(remainingTime - (minutes * 60), 3);
+  seconds = seconds.toString().split('.');
 
-  time.push(hours.toString());
-  time.push(minutes.toString());
-  time.push(seconds.toString());
+  time.push(padStart(hours.toString(), 2, '0'));
+  time.push(padStart(minutes.toString(), 2, '0'));
+  time.push(`${padStart(seconds[0], 2, '0')}.${padStart(seconds[1], 3, '0')}`);
 
-  let newTime = [];
-
-  newTime = time.map(unit => padStart(unit, 2, '0'))
-                .reduce((previousValue, currentValue) => `${previousValue}:${currentValue}`);
-
-  return newTime;
+  return time.reduce((previousValue, currentValue) => `${previousValue}:${currentValue}`);
 }
 
 export function calculateTime(distance, speed) {
@@ -39,11 +30,20 @@ export function calculateSpeed(distance, time) {
 export function convertTimeToSeconds(time) {
   // when only hours and minutes are set input type="time" only returns hours and minutes.
   // This adds missing seconds
+
+  // eslint-disable-next-line
+  console.log(`time: ${time}`);
+
   let newTime;
 
   if (time.length === 5) {
     newTime = `${time}:00`;
+  } else {
+    newTime = time;
   }
+
+  // eslint-disable-next-line
+  console.log(`newTime: ${newTime}`);
 
   const a = newTime.split(':');
   return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
