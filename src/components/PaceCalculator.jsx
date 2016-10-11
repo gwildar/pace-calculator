@@ -1,33 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import Panel from 'react-bootstrap/lib/Panel';
+import { Panel } from 'react-bootstrap';
+import { Distance, Pace, Time } from '../components';
 
-import Distance from './Distance.jsx';
-import Time from './Time.jsx';
-import Pace from './Pace.jsx';
+const PaceCalculator = (props) => (
+  <Panel header={<h1>Pace Calculator</h1>} bsStyle="primary">
+    <Distance onInputChange={props.onInputChange} />
+    <Time time={props.data.time} onInputChange={props.onInputChange} />
+    <Pace pace={props.data.pace} onInputChange={props.onInputChange} />
+  </Panel>
+);
 
-import * as TimeFunctions from './TimeFunctions';
+PaceCalculator.propTypes = {
+  data: PropTypes.object,
+  onInputChange: PropTypes.func,
+  updateCalulator: PropTypes.string,
+  lastChanged: PropTypes.string,
+};
 
-export default class PaceCalculator extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {time: "00:00:00", pace: "00:00:00", distance: "10", units: "mpkm"};
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange (time, pace, distance) {
-    this.setState({time: time});
-    this.setState({distance: distance});
-    this.setState({pace: pace});
-  }
-  
-  render() {
-    return (
-      <Panel header="Pace Calculator">
-          <Distance {...this.state} handleChange={this.handleChange} />
-          <Time {...this.state} handleChange={this.handleChange} />
-          <Pace {...this.state} handleChange={this.handleChange} />
-      </Panel>
-    );
-  }
-}
+export default PaceCalculator;

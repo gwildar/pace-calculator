@@ -1,33 +1,23 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import FormControl from  'react-bootstrap/lib/FormControl';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-import * as TimeFunctions from './TimeFunctions';
 
-export default class Time extends React.Component {
-  constructor(props) {
-    super(props);
-    this.timeChange = this.timeChange.bind(this);
-  }
+const Time = (props) => (
+  <FormGroup controlId="formTime">
+    <ControlLabel>Time</ControlLabel>
+    <FormControl
+      type="time"
+      value={props.time}
+      step="1"
+      onChange={(e) => props.onInputChange(e.target.value, 'TIME')}
+    />
+  </FormGroup>
+);
 
-  timeChange(e) {
-    var time = e.target.value;
-    var distance = this.props.distance;
-    var seconds = TimeFunctions.convertTimeToSeconds(time);
-    var pace = TimeFunctions.calculateSpeed (distance, seconds);
-    pace = TimeFunctions.formatTime(pace);
+Time.propTypes = {
+  time: PropTypes.string,
+  onInputChange: PropTypes.func.isRequired,
+};
 
-    this.props.handleChange (time, pace, distance);
-  }
-
-  render() {
-    return (
-      <FormGroup controlId="formTime">
-        <ControlLabel>Time</ControlLabel>
-        <FormControl type="time" value={this.props.time} onChange={this.timeChange} step="1" />
-      </FormGroup>
-    );
-  }
-}
+export default Time;

@@ -1,38 +1,39 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-import FormGroup from 'react-bootstrap/lib/FormGroup';
-import ControlLabel from 'react-bootstrap/lib/ControlLabel';
-import FormControl from  'react-bootstrap/lib/FormControl';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-import * as TimeFunctions from './TimeFunctions';
 
-export default class Distance extends React.Component {
-  constructor(props) {
-    super(props);
-    this.distanceChange = this.distanceChange.bind(this);
-  }
+const Distance = (props) => (
+  <FormGroup controlId="formDistanceSelect">
+    <ControlLabel>Distance</ControlLabel>
+    <FormControl
+      componentClass="select"
+      onChange={(e) => props.onInputChange(e.target.value, 'DISTANCE')}
+    >
+      <optgroup label="sprints">
+        <option value="0.1">100m</option>
+        <option value="0.2">200m</option>
+        <option value="0.4">400m</option>
+      </optgroup>
+      <optgroup label="middle distance">
+        <option value="0.8">800m</option>
+        <option value="1">1000m</option>
+        <option value="1.5">1,500m</option>
+        <option value="1.60934">1 mile</option>
+      </optgroup>
+      <optgroup label="long distance">
+        <option value="3">3000m</option>
+        <option value="5">5000m (5km)</option>
+        <option value="10">10,000m (10km)</option>
+        <option value="21.0975">Half Marathon</option>
+        <option value="42.195">Marathon</option>
+      </optgroup>
+    </FormControl>
+  </FormGroup>
+);
 
-  distanceChange (e) {
-    var distance = e.target.value;
-    var time = this.props.time;
-    var pace = this.props.pace;
+Distance.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+};
 
-    var seconds = TimeFunctions.convertTimeToSeconds(time);
-    var pace = TimeFunctions.calculateSpeed (distance, seconds);
-    pace = TimeFunctions.formatTime(pace)
-
-    this.props.handleChange (time, pace, distance);
-  }
-
-  render() {
-    return (
-      <FormGroup controlId="formDistanceSelect">
-        <ControlLabel>Distance</ControlLabel>
-          <FormControl componentClass="select" onChange={this.distanceChange} value={this.props.distance}>
-          <option value="5">5km</option>
-          <option value="10">10km</option>
-        </FormControl>
-      </FormGroup>
-      );
-  }
-}
+export default Distance;
