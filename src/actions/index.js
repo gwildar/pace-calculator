@@ -1,26 +1,48 @@
-export const updateCalulator = (value) => ({
-  type: 'UPDATE_CALCULATOR',
-  value,
-});
+//
+// actions
+//
 
-export const updatePace = (value) => ({
-  type: 'PACE',
-  value,
-});
+export const UPDATE_PACE = 'UPDATE_PACE';
+export const UPDATE_TIME = 'UPDATE_TIME';
+export const UPDATE_DISTANCE = 'UPDATE_DISTANCE';
+export const UPDATE_PACE_VALIDATION = 'UPDATE_PACE_VALIDATION';
+export const UPDATE_TIME_VALIDATION = 'UPDATE_TIME_VALIDATION';
 
-export const updateTime = (value) => ({
-  type: 'TIME',
-  value,
-});
+//
+// action creators
+//
 
-export const updateDistance = (value) => ({
-  type: 'DISTANCE',
-  value,
-});
+export function updatePace(value) {
+  return {
+    type: UPDATE_PACE,
+    value,
+  };
+}
 
-export const updateAll = (distance, pace, time) => ({
-  type: 'UPDATE_ALL',
-  distance,
-  pace,
-  time,
-});
+export function updateTime(value) {
+  return {
+    type: UPDATE_TIME,
+    value,
+  };
+}
+
+export function updateDistance(value) {
+  return {
+    type: UPDATE_DISTANCE,
+    value,
+  };
+}
+
+export function updatePaceValidation(value) {
+  return {
+    type: UPDATE_PACE_VALIDATION,
+    value,
+  };
+}
+
+export function updateTimeValidation(value) {
+  return {
+    type: UPDATE_TIME_VALIDATION,
+    value,
+  };
+}

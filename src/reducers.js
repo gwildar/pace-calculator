@@ -1,44 +1,57 @@
 import { combineReducers } from 'redux';
 
-const initialSetup = { time: '00:00:00', pace: '00:00:00', distance: '5' };
+import {
+  UPDATE_PACE,
+  UPDATE_TIME,
+  UPDATE_DISTANCE,
+  UPDATE_PACE_VALIDATION,
+  UPDATE_TIME_VALIDATION,
+} from './actions';
 
-const data = (state = initialSetup, action) => {
+const initialSetup = {
+  time: '00:00:00',
+  pace: '00:00:00',
+  distance: '5',
+};
+
+const initialValidation = {
+  paceValidation: null,
+  timeValidation: null,
+};
+
+function data(state = initialSetup, action) {
   switch (action.type) {
-    case 'PACE':
+    case UPDATE_PACE:
       return Object.assign({}, state, {
         pace: action.value,
       });
-    case 'TIME':
+    case UPDATE_TIME:
       return Object.assign({}, state, {
         time: action.value,
       });
-    case 'DISTANCE':
+    case UPDATE_DISTANCE:
       return Object.assign({}, state, {
         distance: action.value,
-      });
-    case 'UPDATE_ALL':
-      return Object.assign({}, state, {
-        pace: action.pace,
-        distance: action.distance,
-        time: action.time,
       });
     default:
       return state;
   }
-};
+}
 
-const lastChanged = (state = 'TEST', action) => {
+function validation(state = initialValidation, action) {
   switch (action.type) {
-    case 'UPDATE_CALCULATOR':
+    case UPDATE_PACE_VALIDATION:
+      return action.value;
+    case UPDATE_TIME_VALIDATION:
       return action.value;
     default:
       return state;
   }
-};
+}
 
 const paceCalculator = combineReducers({
-  lastChanged,
   data,
+  validation,
 });
 
 export default paceCalculator;

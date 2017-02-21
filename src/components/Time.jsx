@@ -4,7 +4,7 @@ import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 
 const Time = (props) => (
-  <FormGroup controlId="formTime">
+  <FormGroup controlId="formTime" validationState={props.validation}>
     <ControlLabel>Time</ControlLabel>
     <FormControl
       type="time"
@@ -18,6 +18,7 @@ const Time = (props) => (
 Time.propTypes = {
   time: PropTypes.string,
   onInputChange: PropTypes.func.isRequired,
+  validation: PropTypes.string,
 };
 
 export default Time;

@@ -31,9 +31,6 @@ export function convertTimeToSeconds(time) {
   // when only hours and minutes are set input type="time" only returns hours and minutes.
   // This adds missing seconds
 
-  // eslint-disable-next-line
-  console.log(`time: ${time}`);
-
   let newTime;
 
   if (time.length === 5) {
@@ -41,9 +38,6 @@ export function convertTimeToSeconds(time) {
   } else {
     newTime = time;
   }
-
-  // eslint-disable-next-line
-  console.log(`newTime: ${newTime}`);
 
   const a = newTime.split(':');
   return (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]);
@@ -56,4 +50,3 @@ export function convertKPMtoMPM(value) {
 export function convertMPMtoKPM(value) {
   return value * 1.609344;
 }
-

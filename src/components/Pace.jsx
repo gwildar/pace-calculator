@@ -4,10 +4,10 @@ import { FormGroup, ControlLabel, FormControl, Row, Col } from 'react-bootstrap'
 
 
 const Pace = (props) => (
-  <Row className="show-grid" thing="PACE">
+  <Row>
     <Col xs={7}>
-      <FormGroup controlId="formPace">
-        <ControlLabel>Pace</ControlLabel>
+      <FormGroup controlId="formPace" validationState={props.validation}>
+        <ControlLabel>Pace {props.validation}</ControlLabel>
         <FormControl
           type="time"
           step="1"
@@ -34,6 +34,7 @@ const Pace = (props) => (
 Pace.propTypes = {
   pace: PropTypes.string,
   onInputChange: PropTypes.func.isRequired,
+  validation: PropTypes.string,
 };
 
 export default Pace;

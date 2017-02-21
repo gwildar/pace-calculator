@@ -6,8 +6,16 @@ import { Distance, Pace, Time } from '../components';
 const PaceCalculator = (props) => (
   <Panel header={<h1>Pace Calculator</h1>} bsStyle="primary">
     <Distance onInputChange={props.onInputChange} />
-    <Time time={props.data.time} onInputChange={props.onInputChange} />
-    <Pace pace={props.data.pace} onInputChange={props.onInputChange} />
+    <Time
+      time={props.data.time}
+      onInputChange={props.onInputChange}
+      validation={props.data.timeValidation}
+    />
+    <Pace
+      pace={props.data.pace}
+      onInputChange={props.onInputChange}
+      validation={props.data.paceValidation}
+    />
   </Panel>
 );
 

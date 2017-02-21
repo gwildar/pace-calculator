@@ -12,12 +12,17 @@ import 'bootstrap-less/bootstrap/bootstrap.less';
 import 'bootstrap-material-design/less/bootstrap-material-design.less';
 import './main.less';
 
-const store = createStore(paceCalculator);
+/* eslint-disable no-underscore-dangle */
+const store = createStore(
+  paceCalculator,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */
 
 ReactDOM.render(
   <Provider store={store}>
     <Grid>
-      <Row className="show-grid">
+      <Row>
         <Col sm={6} smOffset={3}>
           <CalculatorContainer />
         </Col>
