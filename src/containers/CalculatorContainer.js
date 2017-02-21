@@ -1,7 +1,14 @@
 import { connect } from 'react-redux';
 
-// todo: compose the time functions better
+// TODO: compose the time functions better
 // import { compose } from 'ramda';
+
+import {
+  convertTimeToSeconds,
+  formatTime,
+  calculateTime,
+  calculateSpeed,
+} from '../utilities/TimeFunctions';
 
 import {
   updatePace,
@@ -11,28 +18,37 @@ import {
 
 import PaceCalculator from '../components/PaceCalculator.jsx';
 
-const mapStateToProps = (state) => ({
-  data: state.data,
-});
-
-function testFunction(unit, dispatch) {
+function calculateNewPace(unit, dispatch, distance) {
+  // TODO: refactor in FP format
+  const newTime = formatTime(calculateTime(distance, convertTimeToSeconds(unit)));
   dispatch(updatePace(unit));
-  dispatch(updateTime('02:00'));
+  dispatch(updateTime(newTime));
+}
+
+function calculateNewTime(unit, dispatch, distance) {
+  // TODO: refactor in FP format
+  const newPace = formatTime(calculateSpeed(distance, convertTimeToSeconds(unit)));
+  dispatch(updatePace(newPace));
+  dispatch(updateTime(unit));
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  onInputChange: (unit, value) => {
+  onInputChange: (unit, value, distance) => {
     switch (value) {
       case 'PACE':
-        return testFunction(unit, dispatch);
+        return calculateNewPace(unit, dispatch, distance);
       case 'TIME':
-        return dispatch(updateTime(unit));
+        return calculateNewTime(unit, dispatch, distance);
       case 'DISTANCE':
-        return dispatch(updateDistance(unit));
+        return dispatch(updateDistance(parseInt(unit, 10)));
       default:
         return null;
     }
   },
+});
+
+const mapStateToProps = (state) => ({
+  data: state.data,
 });
 
 const CalculatorContainer = connect(

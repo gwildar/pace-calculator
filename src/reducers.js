@@ -11,7 +11,7 @@ import {
 const initialSetup = {
   time: '00:00:00',
   pace: '00:00:00',
-  distance: '5',
+  distance: 0.1,
 };
 
 const initialValidation = {
