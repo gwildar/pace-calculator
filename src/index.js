@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 import { Grid, Row, Col } from 'react-bootstrap';
 
 import paceCalculator from './reducers.js';
@@ -15,7 +16,10 @@ import './main.less';
 /* eslint-disable no-underscore-dangle */
 const store = createStore(
   paceCalculator,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
 );
 /* eslint-enable */
 

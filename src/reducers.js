@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux';
 
 import {
-  UPDATE_PACE,
-  UPDATE_TIME,
-  UPDATE_DISTANCE,
+  UPDATE_CALCULATOR,
   UPDATE_PACE_VALIDATION,
   UPDATE_TIME_VALIDATION,
 } from './actions';
@@ -21,17 +19,11 @@ const initialValidation = {
 
 function data(state = initialSetup, action) {
   switch (action.type) {
-    case UPDATE_PACE:
+    case UPDATE_CALCULATOR:
       return Object.assign({}, state, {
-        pace: action.value,
-      });
-    case UPDATE_TIME:
-      return Object.assign({}, state, {
-        time: action.value,
-      });
-    case UPDATE_DISTANCE:
-      return Object.assign({}, state, {
-        distance: action.value,
+        pace: action.pace,
+        time: action.time,
+        distance: action.distance,
       });
     default:
       return state;

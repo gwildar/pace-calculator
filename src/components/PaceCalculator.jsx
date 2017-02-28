@@ -8,6 +8,8 @@ const PaceCalculator = (props) => (
     <Distance
       onInputChange={props.onInputChange}
       distance={props.data.distance}
+      pace={props.data.pace}
+      time={props.data.time}
     />
     <Time
       time={props.data.time}

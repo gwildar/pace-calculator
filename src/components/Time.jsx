@@ -10,7 +10,12 @@ const Time = (props) => (
       type="time"
       value={props.time}
       step="1"
-      onChange={(e) => props.onInputChange(e.target.value, 'TIME', props.distance)}
+      onChange={(e) => props.onInputChange(
+        e.target.value,
+        'TIME',
+        props.distance,
+        props.pace,
+        props.time)}
     />
   </FormGroup>
 );
@@ -20,6 +25,7 @@ Time.propTypes = {
   onInputChange: PropTypes.func.isRequired,
   validation: PropTypes.string,
   distance: PropTypes.number,
+  pace: PropTypes.string,
 };
 
 export default Time;
