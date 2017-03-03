@@ -4,12 +4,14 @@ import {
   UPDATE_CALCULATOR,
   UPDATE_PACE_VALIDATION,
   UPDATE_TIME_VALIDATION,
+  UPDATE_UNIT,
 } from './actions';
 
 const initialSetup = {
   time: '00:00:00',
   pace: '00:00:00',
-  distance: 0.1,
+  distance: '100m',
+  unit: 'km',
 };
 
 const initialValidation = {
@@ -24,6 +26,10 @@ function data(state = initialSetup, action) {
         pace: action.pace,
         time: action.time,
         distance: action.distance,
+      });
+    case UPDATE_UNIT:
+      return Object.assign({}, state, {
+        unit: action.unit,
       });
     default:
       return state;
@@ -40,6 +46,7 @@ function validation(state = initialValidation, action) {
       return state;
   }
 }
+
 
 const paceCalculator = combineReducers({
   data,

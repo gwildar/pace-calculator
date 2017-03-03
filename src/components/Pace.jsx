@@ -12,7 +12,7 @@ const Pace = (props) => (
           type="time"
           step="1"
           value={props.pace}
-          onChange={(e) => props.onInputChange(e.target.value, 'PACE', props.distance)}
+          onChange={(e) => props.onInputChange(e.target.value, 'PACE')}
         />
       </FormGroup>
     </Col>
@@ -23,8 +23,8 @@ const Pace = (props) => (
           componentClass="select"
           onChange={(e) => props.onInputChange(e.target.value, 'UNIT')}
         >
-          <option value="mpkm">km / minute</option>
-          <option value="mpm">mile / minute</option>
+          <option value="km">km / minute</option>
+          <option value="mile">mile / minute</option>
         </FormControl>
       </FormGroup>
     </Col>

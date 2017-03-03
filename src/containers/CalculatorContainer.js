@@ -4,6 +4,7 @@ import {
   calculateNewPace,
   calculateNewTime,
   calculateNewDistance,
+  calculateNewUnit,
 } from '../actions';
 
 import PaceCalculator from '../components/PaceCalculator.jsx';
@@ -17,6 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
         return dispatch(calculateNewTime(unit));
       case 'DISTANCE':
         return dispatch(calculateNewDistance(unit));
+      case 'UNIT':
+        return dispatch(calculateNewUnit(unit));
       default:
         return null;
     }

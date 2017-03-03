@@ -8,20 +8,16 @@ const PaceCalculator = (props) => (
     <Distance
       onInputChange={props.onInputChange}
       distance={props.data.distance}
-      pace={props.data.pace}
-      time={props.data.time}
     />
     <Time
       time={props.data.time}
       onInputChange={props.onInputChange}
       validation={props.data.timeValidation}
-      distance={props.data.distance}
     />
     <Pace
       pace={props.data.pace}
       onInputChange={props.onInputChange}
       validation={props.data.paceValidation}
-      distance={props.data.distance}
     />
   </Panel>
 );
