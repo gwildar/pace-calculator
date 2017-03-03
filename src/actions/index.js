@@ -83,8 +83,7 @@ export function calculateNewDistance(distance) {
 
 export function calculateNewUnit(unit) {
   return (dispatch, getState) => {
-    console.log(getState().data.distance);
-    console.log(unit);
+    // TODO: refactor in FP format
     const distance = distances[getState().data.distance][unit];
     const pace = formatTime(calculateSpeed(distance, convertTimeToSeconds(getState().data.time)));
     dispatch(updateUnit(unit));
