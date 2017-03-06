@@ -5,6 +5,7 @@ import {
   UPDATE_PACE_VALIDATION,
   UPDATE_TIME_VALIDATION,
   UPDATE_UNIT,
+  SHOW_ERROR,
 } from './actions';
 
 const initialSetup = {
@@ -47,10 +48,20 @@ function validation(state = initialValidation, action) {
   }
 }
 
+function error(state = null, action) {
+  switch (action.type) {
+    case SHOW_ERROR:
+      return action.alert;
+    default:
+      return state;
+  }
+}
+
 
 const paceCalculator = combineReducers({
   data,
   validation,
+  error,
 });
 
 export default paceCalculator;

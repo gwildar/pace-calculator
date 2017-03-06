@@ -15,6 +15,7 @@ export const UPDATE_CALCULATOR = 'UPDATE_CALCULATOR';
 export const UPDATE_UNIT = 'UPDATE_UNIT';
 export const UPDATE_PACE_VALIDATION = 'UPDATE_PACE_VALIDATION';
 export const UPDATE_TIME_VALIDATION = 'UPDATE_TIME_VALIDATION';
+export const SHOW_ERROR = 'SHOW_ERROR';
 
 //
 // action creators
@@ -32,6 +33,13 @@ export function updateUnit(unit) {
   return {
     type: UPDATE_UNIT,
     unit,
+  };
+}
+
+export function showAlert(alert) {
+  return {
+    type: SHOW_ERROR,
+    alert,
   };
 }
 
@@ -55,6 +63,11 @@ export function calculateNewPace(pace) {
     // TODO: refactor in FP format
     const distance = distances[getState().data.distance][getState().data.unit];
     const time = formatTime(calculateTime(distance, convertTimeToSeconds(pace)));
+    if (convertTimeToSeconds(time) >= 86400) {
+      dispatch(showAlert('The pace is too damn high. Maximum time is 23:59:59'));
+    } else {
+      dispatch(showAlert(null));
+    }
     dispatch(updateCalulator(getState().data.distance, time, pace));
   };
 }
@@ -64,6 +77,11 @@ export function calculateNewTime(time) {
     // TODO: refactor in FP format
     const distance = distances[getState().data.distance][getState().data.unit];
     const pace = formatTime(calculateSpeed(distance, convertTimeToSeconds(time)));
+    if (convertTimeToSeconds(pace) >= 86400) {
+      dispatch(showAlert('The time is too damn high. Maximum pace is 23:59:59'));
+    } else {
+      dispatch(showAlert(null));
+    }
     dispatch(updateCalulator(getState().data.distance, time, pace));
   };
 }
@@ -76,6 +94,11 @@ export function calculateNewDistance(distance) {
       calculateSpeed(newDistance,
       convertTimeToSeconds(getState().data.time)
     ));
+    if (convertTimeToSeconds(pace) >= 86400) {
+      dispatch(showAlert('The time is too damn high. Maximum pace is 23:59:59'));
+    } else {
+      dispatch(showAlert(null));
+    }
     dispatch(updateCalulator(distance, getState().data.time, pace));
   };
 }

@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
   data: state.data,
+  alert: state.error,
 });
 
 const CalculatorContainer = connect(

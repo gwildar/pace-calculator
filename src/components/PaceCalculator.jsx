@@ -1,10 +1,15 @@
 import React, { PropTypes } from 'react';
 
-import { Panel } from 'react-bootstrap';
+import { Panel, Alert } from 'react-bootstrap';
 import { Distance, Pace, Time } from '../components';
 
 const PaceCalculator = (props) => (
   <Panel header={<h1>Pace Calculator</h1>} bsStyle="primary">
+    {props.alert &&
+      <Alert bsStyle="danger">
+        {props.alert}
+      </Alert>
+    }
     <Distance
       onInputChange={props.onInputChange}
       distance={props.data.distance}
@@ -27,6 +32,7 @@ PaceCalculator.propTypes = {
   onInputChange: PropTypes.func,
   updateCalulator: PropTypes.string,
   lastChanged: PropTypes.string,
+  alert: PropTypes.string,
 };
 
 export default PaceCalculator;
