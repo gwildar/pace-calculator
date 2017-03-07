@@ -1,9 +1,12 @@
 import React, { PropTypes } from 'react';
 
 import { Panel, Alert } from 'react-bootstrap';
-import { Distance, Pace, Time } from '../components';
 
-const PaceCalculator = (props) => (
+import Distance from './Distance';
+import Time from './Time';
+import Pace from './Pace';
+
+const PaceCalculator = props => (
   <Panel header={<h1>Pace Calculator</h1>} bsStyle="primary">
     {props.alert &&
       <Alert bsStyle="danger">
@@ -28,10 +31,14 @@ const PaceCalculator = (props) => (
 );
 
 PaceCalculator.propTypes = {
-  data: PropTypes.object,
-  onInputChange: PropTypes.func,
-  updateCalulator: PropTypes.string,
-  lastChanged: PropTypes.string,
+  data: PropTypes.shape({
+    pace: PropTypes.string,
+    time: PropTypes.string,
+    distance: PropTypes.string,
+    paceValidation: PropTypes.string,
+    timeValidation: PropTypes.string,
+  }).isRequired,
+  onInputChange: PropTypes.func.isRequired,
   alert: PropTypes.string,
 };
 

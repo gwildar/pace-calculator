@@ -4,25 +4,40 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { Grid, Row, Col } from 'react-bootstrap';
-
-import paceCalculator from './reducers.js';
-
-import CalculatorContainer from './containers/CalculatorContainer.js';
-
 import 'bootstrap-less/bootstrap/bootstrap.less';
 import 'bootstrap-material-design/less/bootstrap-material-design.less';
+
+
 import './main.less';
+import paceCalculator from './reducers';
+import CalculatorContainer from './containers/CalculatorContainer';
 
-/* eslint-disable no-underscore-dangle */
-const store = createStore(
-  paceCalculator,
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
-/* eslint-enable */
+const isProduction = process.env.NODE_ENV === 'production';
 
+// Creating store
+let store = null;
+
+if (isProduction) {
+  const middleware = applyMiddleware(thunk);
+
+  store = createStore(
+    paceCalculator,
+    middleware,
+  );
+} else {
+  const middleware = applyMiddleware(thunk);
+  const enhancer = compose(
+    middleware,
+  );
+
+  store = createStore(
+    paceCalculator,
+    enhancer,
+  );
+}
+
+
+// Render it to DOM
 ReactDOM.render(
   <Provider store={store}>
     <Grid>
@@ -33,5 +48,5 @@ ReactDOM.render(
       </Row>
     </Grid>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

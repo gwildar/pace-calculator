@@ -2,12 +2,12 @@ import React, { PropTypes } from 'react';
 
 import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
-const Distance = (props) => (
+const Distance = props => (
   <FormGroup controlId="formDistanceSelect">
     <ControlLabel>Distance</ControlLabel>
     <FormControl
       componentClass="select"
-      onChange={(e) => props.onInputChange(e.target.value, 'DISTANCE')}
+      onChange={e => props.onInputChange(e.target.value, 'DISTANCE')}
     >
       <optgroup label="sprints">
         <option value="100m">100m</option>

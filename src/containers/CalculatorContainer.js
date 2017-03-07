@@ -7,9 +7,9 @@ import {
   calculateNewUnit,
 } from '../actions';
 
-import PaceCalculator from '../components/PaceCalculator.jsx';
+import PaceCalculator from '../components/PaceCalculator';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   onInputChange: (unit, value) => {
     switch (value) {
       case 'PACE':
@@ -26,14 +26,14 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   data: state.data,
   alert: state.error,
 });
 
 const CalculatorContainer = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(PaceCalculator);
 
 export default CalculatorContainer;

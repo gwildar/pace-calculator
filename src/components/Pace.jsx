@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import { FormGroup, ControlLabel, FormControl, Row, Col } from 'react-bootstrap';
 
 
-const Pace = (props) => (
+const Pace = props => (
   <Row>
     <Col xs={7}>
       <FormGroup controlId="formPace" validationState={props.validation}>
@@ -12,7 +12,7 @@ const Pace = (props) => (
           type="time"
           step="1"
           value={props.pace}
-          onChange={(e) => props.onInputChange(e.target.value, 'PACE')}
+          onChange={e => props.onInputChange(e.target.value, 'PACE')}
         />
       </FormGroup>
     </Col>
@@ -21,7 +21,7 @@ const Pace = (props) => (
         <ControlLabel>Units</ControlLabel>
         <FormControl
           componentClass="select"
-          onChange={(e) => props.onInputChange(e.target.value, 'UNIT')}
+          onChange={e => props.onInputChange(e.target.value, 'UNIT')}
         >
           <option value="km">km / minute</option>
           <option value="mile">mile / minute</option>
@@ -35,7 +35,6 @@ Pace.propTypes = {
   pace: PropTypes.string,
   onInputChange: PropTypes.func.isRequired,
   validation: PropTypes.string,
-  distance: PropTypes.number,
 };
 
 export default Pace;

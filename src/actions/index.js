@@ -92,7 +92,7 @@ export function calculateNewDistance(distance) {
     const newDistance = distances[distance][getState().data.unit];
     const pace = formatTime(
       calculateSpeed(newDistance,
-      convertTimeToSeconds(getState().data.time)
+      convertTimeToSeconds(getState().data.time),
     ));
     if (convertTimeToSeconds(pace) >= 86400) {
       dispatch(showAlert('The time is too damn high. Maximum pace is 23:59:59'));
